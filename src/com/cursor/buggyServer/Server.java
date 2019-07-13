@@ -6,12 +6,13 @@ import com.cursor.buggyServer.exceptions.NumberBiggerThanHundredException;
 import com.cursor.buggyServer.exceptions.OddNumberException;
 
 class Server {
+    private static final int HUNDRED = 100;
 
     void process(int i) throws NumberBiggerThanHundredException, OddNumberException {
         if (i % 2 != 0) {
             throw new OddNumberException(i);
         }
-        if (i > 100) {
+        if (i > HUNDRED) {
             throw new NumberBiggerThanHundredException(i);
         }
         System.out.println("Number " + i + " processed successfully");
