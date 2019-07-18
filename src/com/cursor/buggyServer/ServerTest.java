@@ -8,16 +8,8 @@ import com.cursor.buggyServer.exceptions.OddNumberException;
 class ServerTest {
 
     void run() {
-        try {
-            loop();
-        } catch (StackOverflowError soe) {
-            System.out.println("Got StackOverFlowError");
-        }
-        try {
-            String[] fail = new String[Integer.MAX_VALUE];
-        } catch (OutOfMemoryError oome) {
-            System.out.println("Got OutOfMemoryError");
-        }
+        generateStackOverflow();
+        generateOutOfMemory();
         Server server = new Server();
         try {
             server.process(16);
@@ -27,7 +19,7 @@ class ServerTest {
         }
         try {
             server.process(116);
-        } catch (OddNumberException | NumberBiggerThanHundredException e) {
+        } catch (NumberBiggerThanHundredException | OddNumberException e) {
             print(e);
         }
         try {
@@ -46,7 +38,26 @@ class ServerTest {
     }
 
     private void print(Exception e) {
+        if (null == e){
+            return;
+        }
         System.out.println(e.getMessage());
+    }
+
+    private void generateStackOverflow() {
+        try {
+            loop();
+        } catch (StackOverflowError soe) {
+            System.out.println("Got StackOverFlowError");
+        }
+    }
+
+    private void generateOutOfMemory() {
+        try {
+            String[] fail = new String[Integer.MAX_VALUE];
+        } catch (OutOfMemoryError oome) {
+            System.out.println("Got OutOfMemoryError");
+        }
     }
 
     private void loop() {

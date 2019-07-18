@@ -9,16 +9,19 @@ class Server {
     private static final int HUNDRED = 100;
 
     void process(int i) throws NumberBiggerThanHundredException, OddNumberException {
-        if (i % 2 != 0) {
-            throw new OddNumberException(i);
-        }
         if (i > HUNDRED) {
             throw new NumberBiggerThanHundredException(i);
+        }
+        if (i % 2 != 0) {
+            throw new OddNumberException(i);
         }
         System.out.println("Number " + i + " processed successfully");
     }
 
     void process(String s) throws NotAPalindromeException {
+        if (null == s) {
+            throw new NotAPalindromeException("null");
+        }
         String processed = s.replace(" ", "").toLowerCase();
         if (processed.equals(new StringBuilder(processed).reverse().toString())) {
             System.out.println("Your palindrome string " + s + " processed successfully");
@@ -26,7 +29,7 @@ class Server {
     }
 
     void process(Object o) throws NullObjectException {
-        if (o == null) {
+        if (null == o) {
             throw new NullObjectException();
         }
         System.out.println("Your object processed successfully");
