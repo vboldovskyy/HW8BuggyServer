@@ -8,28 +8,28 @@ import com.cursor.buggyServer.exceptions.OddNumberException;
 class Server {
     private static final int HUNDRED = 100;
 
-    void process(int i) throws NumberBiggerThanHundredException, OddNumberException {
-        if (i > HUNDRED) {
-            throw new NumberBiggerThanHundredException(i);
+    void process(int integerToProcess) throws NumberBiggerThanHundredException, OddNumberException {
+        if (integerToProcess > HUNDRED) {
+            throw new NumberBiggerThanHundredException(integerToProcess);
         }
-        if (i % 2 != 0) {
-            throw new OddNumberException(i);
+        if (integerToProcess % 2 != 0) {
+            throw new OddNumberException(integerToProcess);
         }
-        System.out.println("Number " + i + " processed successfully");
+        System.out.println("Number " + integerToProcess + " processed successfully");
     }
 
-    void process(String s) throws NotAPalindromeException {
-        if (null == s) {
+    void process(String stringToProcess) throws NotAPalindromeException {
+        if (null == stringToProcess) {
             throw new NotAPalindromeException("null");
         }
-        String processed = s.replace(" ", "").toLowerCase();
+        String processed = stringToProcess.replace(" ", "").toLowerCase();
         if (processed.equals(new StringBuilder(processed).reverse().toString())) {
-            System.out.println("Your palindrome string " + s + " processed successfully");
-        } else throw new NotAPalindromeException(s);
+            System.out.println("Your palindrome string " + stringToProcess + " processed successfully");
+        } else throw new NotAPalindromeException(stringToProcess);
     }
 
-    void process(Object o) throws NullObjectException {
-        if (null == o) {
+    void process(Object objectToProcess) throws NullObjectException {
+        if (null == objectToProcess) {
             throw new NullObjectException();
         }
         System.out.println("Your object processed successfully");
